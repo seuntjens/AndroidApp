@@ -51,6 +51,11 @@ public class SMSReceiver extends BroadcastReceiver {
 
 		    // keep this broadcast to ourselves
 		    //abortBroadcast();
+		    
+		    intent.setClass(context, PopSMSActivity.class);
+		    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		    intent.putExtra("msg", pop_msg);
+		    context.startService(intent);
 	
 	}
 

@@ -25,20 +25,35 @@ public class PopSMSActivity extends Activity {
 	       // i.e. no incoming SMS
 	       if(msg == null){
 	                msg = new PopMessage();
-		 msg.setPhone("0123456789");
-		 msg.setTime( System.currentTimeMillis() );
+		 msg.setSender("0123456789");
+		 msg.setTimestamp( System.currentTimeMillis() );
 		 msg.setBody(" this is a test SMS message!");
 	       }
 	       showDialog(msg);
 	   }
 	   
+	   private void smsReply(String sender, String body){
+			Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+			sendIntent.putExtra("address", sender);
+			sendIntent.putExtra("sms_body", body);
+			sendIntent.setType("vnd.android-dir/mms-sms");
+			startActivity(sendIntent);
+			this.finish(); // close this Activity now
+}
+	   private void goHome(){
+		   	Intent intent = new Intent(Intent.ACTION_MAIN);
+		    intent.addCategory(Intent.CATEGORY_HOME);
+		    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		    startActivity(intent);
+		    this.finish();
+		   }
 	   private void showDialog(PopMessage msg){
 
-			final String sender = msg.getPhone();
+			final String sender = msg.getSender();
 			final String body = msg.getBody();
 
 			final String display = sender + "\n"
-		            + msg.getShortDate( msg.getTime() )+ "\n"
+		            + msg.getShortDate( msg.getTimestamp() )+ "\n"
 		            + body + "\n";
 
 		    // Display in Alert Dialog
@@ -55,7 +70,7 @@ public class PopSMSActivity extends Activity {
 				public void onClick(DialogInterface dialog, int id) {
 		                  // go back to the phone home screen
 			              goHome();
-				}
+				}			  
 			});
 			AlertDialog alert = builder.create();
 			alert.show();
