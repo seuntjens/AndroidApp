@@ -37,6 +37,11 @@ public class SMSReceiver extends BroadcastReceiver {
 		   // construct a PopMessage object
 		   PopMessage pop_msg = new PopMessage();
 		    // populate with timestamp, SMS sender & body using the setters here
+		    pop_msg.setSender(smsSender);
+		    pop_msg.setBody(smsBody);
+		    pop_msg.setTimestamp(timestamp);
+		   
+		   
 		    //...
 
 		    // start a new task before dying

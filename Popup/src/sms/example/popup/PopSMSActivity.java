@@ -24,10 +24,10 @@ public class PopSMSActivity extends Activity {
 	       // Case where we launch the app to test the UI
 	       // i.e. no incoming SMS
 	       if(msg == null){
-	                msg = new PopMessage();
-		 msg.setSender("0123456789");
-		 msg.setTimestamp( System.currentTimeMillis() );
-		 msg.setBody(" this is a test SMS message!");
+		     msg = new PopMessage();
+		     msg.setSender("0123456789");
+			 msg.setTimestamp( System.currentTimeMillis() );
+			 msg.setBody(" this is a test SMS message!");
 	       }
 	       showDialog(msg);
 	   }

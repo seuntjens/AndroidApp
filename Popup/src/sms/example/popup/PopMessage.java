@@ -11,10 +11,38 @@ import android.R.string;
 import android.text.format.DateFormat;
 
 public class PopMessage implements Serializable {
-
+	
     private String sender;
     private String body;
     private long timestamp;
+    
+    public String getSender() {
+    	return sender;
+    }
+
+    public void setSender(String sender) {
+    	this.sender = sender;
+    }
+
+
+    public String getBody() {
+    	return body;
+    }
+
+
+    public void setBody(String body) {
+    	this.body = body;
+    }
+
+
+    public long getTimestamp() {
+    	return timestamp;
+    }
+
+
+    public void setTimestamp(long timestamp) {
+    	this.timestamp = timestamp;
+    }
 
 
    /**
@@ -31,32 +59,6 @@ public class PopMessage implements Serializable {
    }
 
 
-public String getSender() {
-	return sender;
-}
 
-public void setSender(String sender) {
-	this.sender = sender;
-}
-
-
-public String getBody() {
-	return body;
-}
-
-
-public void setBody(String body) {
-	this.body = body;
-}
-
-
-public long getTimestamp() {
-	return timestamp;
-}
-
-
-public void setTimestamp(long timestamp) {
-	this.timestamp = timestamp;
-}
 
 }
