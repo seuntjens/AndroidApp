@@ -1,5 +1,6 @@
 package sms.example.popup;
 
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -40,7 +41,7 @@ public class SMSReceiver extends BroadcastReceiver {
 		    pop_msg.setSender(smsSender);
 		    pop_msg.setBody(smsBody);
 		    pop_msg.setTimestamp(timestamp);
-		   
+		   	   
 		   
 		    //...
 
