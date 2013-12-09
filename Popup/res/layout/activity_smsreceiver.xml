@@ -1,9 +1,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:theme="@android:style/Theme.Translucent"
+    android:id="@+id/layout_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/transparent"
+    android:theme="@android:style/Theme.Translucent"
     tools:context=".SMSReceiver" >
 
     <Button
@@ -14,6 +15,7 @@
         android:layout_below="@+id/messageText"
         android:text="@string/Cancel"
         android:layout_marginLeft="15dp" />
+    
 
     <TextView
         android:id="@+id/dateText"
@@ -31,7 +33,7 @@
         android:layout_centerHorizontal="true"
         android:ems="10"
         android:gravity="center" />
-
+	    
     <TextView
         android:id="@+id/phoneText"
         android:layout_width="wrap_content"
@@ -48,13 +50,15 @@
         android:layout_alignBaseline="@+id/cancelButton"
         android:layout_alignBottom="@+id/cancelButton"
         android:layout_alignLeft="@+id/messageText"
-        android:text="@string/Reply" />
-
+        android:text="@string/Reply" />   
+		
+		
     <QuickContactBadge
         android:id="@+id/quickBadge1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
+
 
 </RelativeLayout>

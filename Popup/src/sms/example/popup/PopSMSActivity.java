@@ -13,6 +13,7 @@ import android.provider.ContactsContract.PhoneLookup;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.QuickContactBadge;
 import android.widget.TextView;
@@ -26,6 +27,7 @@ public class PopSMSActivity extends Activity {
 
 	       // retrieve Serializable sms message object
 	       // by the key "msg" used to pass it
+	       setContentView(R.layout.activity_smsreceiver);
 	       Intent in = this.getIntent();
 	       PopMessage msg = (PopMessage) in.getSerializableExtra("msg");
 
@@ -37,28 +39,31 @@ public class PopSMSActivity extends Activity {
 			 msg.setTimestamp( System.currentTimeMillis() );
 			 msg.setBody(" this is a test SMS message!");
 	       }
-	        showDialog( msg);
+	        showdialogLayout( msg);
 	       
 	   }
-	   private void showdialog(final PopMessage msg){
+	   private void showdialogLayout(final PopMessage msg){
 		   final String sender = quickCallerId(msg.getSender());
 		   final String body = msg.getBody();
-		   final String date = msg.getShortDate( msg.getTimestamp() );
-		   
-		   //toewijzen van de views aan lokale variabelen
-		   TextView message = (TextView) findViewById(R.id.messageText);
-		   TextView dateText = (TextView) findViewById(R.id.dateText);
-		   TextView phone = (TextView) findViewById(R.id.phoneText);
-		   QuickContactBadge quickBadge = (QuickContactBadge) findViewById(R.id.quickBadge1);
-		   
-		   message.setText(body);	
-		   phone.setText(sender);
-		   dateText.setText(date);
-		 //trage manier van het opzoeken van contact photo, werkt momenteel ook niet
-		   //quickBadge.assignContactFromPhone(msg.getSender(), false);
+		   final String date = msg.getShortDate( msg.getTimestamp() );	   
+		  
+	   	
+		   AlertDialog.Builder builder;
+		   AlertDialog alertDialog;
 
+		   Context mContext = this;
+		   LayoutInflater inflater = (LayoutInflater)
+		           mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
+		   View layout = inflater.inflate(R.layout.activity_smsreceiver,null);
+
+		 
+		   builder = new AlertDialog.Builder(mContext);
+		 //toewijzen van de views aan lokale variabelen
+		   TextView message = (TextView)layout.findViewById(R.id.messageText);
+		   TextView dateText = (TextView)layout.findViewById(R.id.dateText);
+		   TextView phone = (TextView)layout.findViewById(R.id.phoneText);
 		   
-		   Button cancel = (Button) findViewById(R.id.cancelButton);
+		   Button cancel = (Button) layout.findViewById(R.id.cancelButton);
 		   cancel.setOnClickListener(new View.OnClickListener(){
 			@Override
 			public void onClick(View v) {
@@ -66,28 +71,22 @@ public class PopSMSActivity extends Activity {
 			}
 		   });
 		   
-		   Button reply = (Button) findViewById(R.id.replyButton);
+		   Button reply = (Button) layout.findViewById(R.id.replyButton);
 		   reply.setOnClickListener(new View.OnClickListener(){
 			@Override
 			public void onClick(View v) {
 				smsReply(msg.getSender(),body);				
 			}
-		   });
-		   AlertDialog.Builder builder;
-		   AlertDialog alertDialog;
-		    
-		
-		   Context mContext = this;
-		   LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
-		   View layout = inflater.inflate(R.layout.activity_smsreceiver, null);
+		   });		
 		   
-		   builder = new AlertDialog.Builder(mContext);
-		  // builder.setView(layout);
-		   builder.setView(reply);
+		   message.setText(body);	
+		   phone.setText(sender);
+		   dateText.setText(date);
 		   
-		   alertDialog = builder.create();
-		    
+		   builder.setView(layout);
+		   alertDialog = builder.create();  
 		   alertDialog.show();
+		    
 	   }
 
 	   //telefoonnummer opzoeken in contacten
@@ -125,10 +124,13 @@ public class PopSMSActivity extends Activity {
 	}
 	   
 	   /***/
-	  private void showDialog(PopMessage msg){
+	  /*private void showDialog(PopMessage msg){
 
 	   	final String sender = quickCallerId(msg.getSender());
 	   	final String body = msg.getBody();
+	   	final String displaySender = sender;
+	   	final String displayMessage = msg.getShortDate(msg.getTimestamp());
+	   	final String displayBody = body;
 
 	   	final String display = sender + "\n"
 	               + msg.getShortDate( msg.getTimestamp() )+ "\n"
@@ -152,5 +154,5 @@ public class PopSMSActivity extends Activity {
 	   	});
 	   	AlertDialog alert = builder.create();
 	   	alert.show();
-	   }
+	   }*/
 }

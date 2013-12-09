@@ -52,7 +52,7 @@ public class PopMessage implements Serializable {
    public String getShortDate(long timestamp){
         Date date = new Date();
         Calendar cal = new GregorianCalendar();
-	  SimpleDateFormat sdf = new SimpleDateFormat("E MMM dd hh:mmaa");
+	  SimpleDateFormat sdf = new SimpleDateFormat("hh:mm E");
 	  sdf.setCalendar(cal);
 	  cal.setTime(date);
 	  return sdf.format(date);
