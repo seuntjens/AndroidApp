@@ -7,27 +7,45 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Point;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.PhoneLookup;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.QuickContactBadge;
 import android.widget.TextView;
 
 public class PopSMSActivity extends Activity {
 	
 	/** Called when the activity is first created. */
+	Point p;
 	   @Override
 	   public void onCreate(Bundle savedInstanceState) {
 	       super.onCreate(savedInstanceState);
-
-	       // retrieve Serializable sms message object
-	       // by the key "msg" used to pass it
-	       setContentView(R.layout.activity_smsreceiver);
+	       setContentView(R.layout.activity_main);
+	       
+	       Button btn_show = (Button) findViewById(R.id.Popup);
+	       btn_show.setOnClickListener(new View.OnClickListener() {
+	         @Override
+	         public void onClick(View arg0) {
+	     
+	           //Open popup window
+	           if (p != null);
+	           	showPopup(PopSMSActivity.this,p);
+	         }
+	       });
+	   }
+	   private void showPopup(final Activity context, Point p) {
+		// retrieve Serializable sms message object
+	       // by the key "msg" used to pass it	       
 	       Intent in = this.getIntent();
 	       PopMessage msg = (PopMessage) in.getSerializableExtra("msg");
 
@@ -39,10 +57,12 @@ public class PopSMSActivity extends Activity {
 			 msg.setTimestamp( System.currentTimeMillis() );
 			 msg.setBody(" this is a test SMS message!");
 	       }
-	        showdialogLayout( msg);
-	       
-	   }
+	       showdialogLayout( msg);	   
+		  
+		}
 	   private void showdialogLayout(final PopMessage msg){
+		   
+		   
 		   final String sender = quickCallerId(msg.getSender());
 		   final String body = msg.getBody();
 		   final String date = msg.getShortDate( msg.getTimestamp() );	   

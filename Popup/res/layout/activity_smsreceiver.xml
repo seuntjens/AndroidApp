@@ -39,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/dateText"
-        android:layout_below="@+id/quickBadge1"
+        android:layout_alignParentTop="true"
         android:layout_marginTop="26dp"
         android:ems="10" />
 
@@ -50,15 +50,10 @@
         android:layout_alignBaseline="@+id/cancelButton"
         android:layout_alignBottom="@+id/cancelButton"
         android:layout_alignLeft="@+id/messageText"
-        android:text="@string/Reply" />   
-		
-		
-    <QuickContactBadge
-        android:id="@+id/quickBadge1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:text="@string/Reply" />
+    
+	
 
+ 
 
 </RelativeLayout>
