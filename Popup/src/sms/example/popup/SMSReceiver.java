@@ -46,7 +46,7 @@ public class SMSReceiver extends BroadcastReceiver {
 		    //...
 
 		    // start a new task before dying
-		    intent.setClass(context, showPopup.class);
+		    intent.setClass(context, smsPopup.class);
 		    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
 		    // pass Serializable object
@@ -58,7 +58,7 @@ public class SMSReceiver extends BroadcastReceiver {
 		    // keep this broadcast to ourselves
 		    //abortBroadcast();
 		    
-		    intent.setClass(context, showPopup.class);
+		    intent.setClass(context, smsPopup.class);
 		    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		    intent.putExtra("msg", pop_msg);
 		    context.startService(intent);
