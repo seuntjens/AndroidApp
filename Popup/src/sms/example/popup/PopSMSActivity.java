@@ -2,14 +2,12 @@ package sms.example.popup;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Point;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 public class PopSMSActivity extends Activity {
 	
 	/** Called when the activity is first created. */
-	Point p;
 	   @Override
 	   public void onCreate(Bundle savedInstanceState) {
 	       super.onCreate(savedInstanceState);
@@ -21,12 +19,11 @@ public class PopSMSActivity extends Activity {
 	         public void onClick(View arg0) {
 	     
 	           //Open popup window
-	           if (p != null);
-	           	showPopup(PopSMSActivity.this,p);
+	           	showPopup(PopSMSActivity.this);
 	         }
 	       });
 	   }
-	   private void showPopup(final Activity context, Point p) {
+	   private void showPopup(final Activity context) {
 		// retrieve Serializable sms message object
 	       // by the key "msg" used to pass it	       
 	       Intent in = this.getIntent();
